@@ -1,0 +1,27 @@
+# claude-unison
+
+> Claude Code plugin that gives Claude Code persistent memory powered by the Unison brain — sessions are automatically captured and recalled across projects and teammates.
+
+**Agents: start with [AGENTS.md](AGENTS.md)** — it self-onboards you (install → auth → verify), then the capture/recall loop.
+
+Auth is a machine API key (`usk_...`) via `UNISON_TOKEN` env var. The plugin wires two hooks (SessionStart recall + Stop capture) and two skills (`unison-search`, `unison-save`) into Claude Code.
+
+## Docs
+- [README](README.md): install, quickstart, env vars, configuration reference
+- [AGENTS.md](AGENTS.md): how an agent installs, authenticates, and uses this plugin
+- [CONTRIBUTING.md](CONTRIBUTING.md): build, test, lint, PR conventions
+- [SECURITY.md](SECURITY.md): credential handling, reporting vulnerabilities
+
+## Usage
+- Install: `/plugin marketplace add unison-labs-ai/claude-unison`
+- Auth: `export UNISON_TOKEN=usk_...` or run `/claude-unison:auth`
+- Recall: happens automatically at session start (SessionStart hook)
+- Capture: happens automatically at session end (Stop hook)
+- Manual search: `/unison-search <query>`
+- Manual save: `/unison-save <content>`
+
+## Examples
+- [src/lib/brain-client.js](src/lib/brain-client.js): the REST client (search, write, read)
+- [src/search-memory.js](src/search-memory.js): skill entry point for recall
+- [src/write-memory.js](src/write-memory.js): skill entry point for capture
+- [src/context-hook.js](src/context-hook.js): SessionStart hook implementation
