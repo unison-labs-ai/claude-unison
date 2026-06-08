@@ -1,0 +1,9 @@
+{
+  "name": "claude-unison",
+  "version": "0.1.0",
+  "description": "Persistent memory across Claude Code sessions using Unison brain",
+  "author": {
+    "name": "Unison Labs AI",
+    "email": "support@unisonlabs.ai"
+  }
+}

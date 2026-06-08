@@ -59,6 +59,18 @@ Memory recall is disabled for this session.
       return null;
     };
 
+    const shouldInject = settings.injectProfile !== false;
+
+    if (!shouldInject) {
+      writeOutput({
+        hookSpecificOutput: {
+          hookEventName: 'SessionStart',
+          additionalContext: '',
+        },
+      });
+      return;
+    }
+
     const [personalResult, repoResult] = await Promise.all([
       client
         .search(projectName, {

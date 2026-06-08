@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const { getIncludeTools, shouldIncludeTool, getSignalConfig } = require('./settings');
+const { compressObservation } = require('./compress');
 
 const MAX_TOOL_RESULT_LENGTH = 500;
 const TRACKER_DIR = path.join(os.homedir(), '.unison-claude', 'trackers');
@@ -131,7 +132,9 @@ function formatAssistantMessage(message) {
       const toolId = block.id || '';
       if (toolId) toolUseMap.set(toolId, toolName);
       if (!shouldIncludeTool(toolName, currentIncludeList)) continue;
-      const inputStr = formatToolInputCompact(block.input || {});
+      const inputStr =
+        compressObservation(toolName, block.input || {}) ||
+        formatToolInputCompact(block.input || {});
       parts.push({ type: 'tool', toolName, inputStr });
     }
   }
