@@ -1,0 +1,16 @@
+{
+  "name": "claude-unison",
+  "version": "0.1.0",
+  "description": "Persistent memory for Claude Code powered by Unison brain",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unison-labs-ai/claude-unison"
+  },
+  "keywords": ["claude-code", "plugin", "unison", "memory", "ai", "brain"],
+  "author": "Unison Labs AI",
+  "license": "MIT"
+}

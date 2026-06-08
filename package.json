@@ -1,0 +1,24 @@
+{
+  "name": "claude-unison-dev",
+  "version": "0.1.0",
+  "description": "Claude Code plugin that gives AI persistent memory powered by Unison brain",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "clean": "rm -rf plugin/scripts/*.cjs",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "esbuild": "^0.25.0"
+  },
+  "dependencies": {
+    "@unisonlabs/sdk": "^0.1.0"
+  }
+}
