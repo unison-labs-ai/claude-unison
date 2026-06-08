@@ -55,19 +55,13 @@ async function main() {
 
   try {
     if (scope === 'both') {
-      const [personalResult, repoResult] = await Promise.all([
-        client.search(query, { k: 5 }).catch(() => ({ results: [] })),
-        client.search(query, { k: 5 }).catch(() => ({ results: [] })),
-      ]);
+      const searchResult = await client.search(query, { k: 10 }).catch(() => ({ results: [] }));
+      const allResults = searchResult.results || [];
 
-      // Filter personal results to session docs for this project
-      const personalHits = (personalResult.results || []).filter((r) =>
-        r.doc?.path?.startsWith(personalPrefix),
-      );
-      // Filter repo results to project knowledge docs
-      const repoHits = (repoResult.results || []).filter((r) =>
-        r.doc?.path?.startsWith(repoPrefix),
-      );
+      // Session docs for this project
+      const personalHits = allResults.filter((r) => r.doc?.path?.startsWith(personalPrefix));
+      // Project knowledge docs
+      const repoHits = allResults.filter((r) => r.doc?.path?.startsWith(repoPrefix));
 
       if (personalHits.length > 0) {
         console.log(formatSearchResults(query, personalHits, 'Personal'));
@@ -78,7 +72,6 @@ async function main() {
       }
       if (personalHits.length === 0 && repoHits.length === 0) {
         // Fall back to showing all results when no prefix-filtered hits
-        const allResults = personalResult.results || [];
         if (allResults.length > 0) {
           console.log(formatSearchResults(query, allResults, 'Brain'));
         } else {
