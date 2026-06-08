@@ -10,6 +10,7 @@ const SETTINGS_FILE = path.join(SETTINGS_DIR, 'settings.json');
 const DEFAULT_SETTINGS = {
   maxSearchResults: 5,
   debug: false,
+  injectProfile: true,
   signalExtraction: false,
   signalKeywords: [
     'remember',
