@@ -14,8 +14,12 @@ function slugify(name) {
 }
 
 /**
- * Returns the /private/sessions/<hash>/ prefix for the current project's
- * personal session documents. Consistent across sessions for the same repo.
+ * Returns the /private/notes/ root; the hash is embedded in each document
+ * slug rather than used as a subfolder, so all session docs land at the
+ * flat /private/notes/<slug>.md level required by the brain FS contract.
+ *
+ * The returned value is still a "prefix" string — callers append their
+ * per-document discriminator to it via getSessionDocPath().
  */
 function getPersonalSessionPrefix(cwd) {
   const projectConfig = loadProjectConfig(cwd);
@@ -24,11 +28,14 @@ function getPersonalSessionPrefix(cwd) {
   const gitRoot = getGitRoot(cwd);
   const basePath = gitRoot || cwd;
   const hash = sha256Short(basePath);
-  return `/private/sessions/${hash}/`;
+  // Embed hash in slug prefix; no subfolder.
+  return `/private/notes/session-${hash}-`;
 }
 
 /**
- * Returns the /tenant/projects/<name>/ prefix for repo-level shared knowledge.
+ * Returns the /tenant/projects/ root with the repo name embedded in the
+ * slug prefix. Documents land at /tenant/projects/<reponame>-<slug>.md —
+ * a single slug segment as required by the brain FS contract.
  */
 function getRepoDocPrefix(cwd) {
   const projectConfig = loadProjectConfig(cwd);
@@ -38,7 +45,7 @@ function getRepoDocPrefix(cwd) {
   const basePath = gitRoot || cwd;
   const repoName = getGitRemoteName(basePath) || basePath.split('/').pop() || 'unknown';
   const slug = slugify(repoName);
-  return `/tenant/projects/${slug}/`;
+  return `/tenant/projects/${slug}-`;
 }
 
 /**
@@ -52,11 +59,12 @@ function getProjectName(cwd) {
 
 /**
  * Returns the full document path for a session document.
- * sessionId is used as the filename.
+ * sessionId is used as the filename suffix; the project hash is already
+ * embedded in the prefix so the full slug is session-<hash>-<sessionId>.md.
  */
 function getSessionDocPath(cwd, sessionId) {
   const prefix = getPersonalSessionPrefix(cwd);
-  const safe = sessionId.replace(/[^a-zA-Z0-9_-]/g, '_');
+  const safe = sessionId.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   return `${prefix}${safe}.md`;
 }
 
