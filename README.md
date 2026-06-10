@@ -87,24 +87,28 @@ Per-repo overrides. Run `/claude-unison:project-config` or create manually:
 ```json
 {
   "apiToken": "usk_live_...",
-  "personalDocPath": "/private/sessions/my-project/",
-  "repoDocPath": "/tenant/projects/my-project/"
+  "personalDocPath": "/private/notes/session-my-project-",
+  "repoDocPath": "/tenant/projects/my-project-"
 }
 ```
 
 | Option | Description |
 | --- | --- |
 | `apiToken` | Project-specific token (overrides global `UNISON_TOKEN`) |
-| `personalDocPath` | Path prefix for personal session documents |
-| `repoDocPath` | Path prefix for team-shared project knowledge |
+| `personalDocPath` | Slug prefix for personal session documents (appended with `<sessionId>.md`) |
+| `repoDocPath` | Slug prefix for team-shared project knowledge (appended with `<slug>.md`) |
 
 ## Brain Document Paths
 
-Session transcripts are saved under `/private/sessions/<project-hash>/`.
-Project knowledge (saved via `unison-save`) goes to `/tenant/projects/<repo-name>/`.
+Session transcripts are saved as flat documents under `/private/notes/`, with each
+file named `session-<project-hash>-<session-id>.md`. The project hash ensures docs
+from different repos don't collide.
 
-Both paths are writable brain roots — private sessions are visible only to you;
-tenant paths are visible to everyone in your workspace.
+Project knowledge (saved via `unison-save`) goes to `/tenant/projects/<repo-name>-<slug>.md` —
+a single flat slug under the `projects` kind, visible to everyone in your workspace.
+
+Both layouts use the one-slug-segment format required by the brain FS contract;
+nested subfolders are not used.
 
 ## Authentication
 
