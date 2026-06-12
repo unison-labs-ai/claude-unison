@@ -36,7 +36,7 @@ bun run lint:fix   # auto-fix Biome issues
 3. If you change hook or skill behaviour, test against a real brain:
    ```bash
    export UNISON_TOKEN=usk_...
-   export UNISON_API_URL=http://localhost:4001   # or https://api.unisonlabs.ai
+   export UNISON_API_URL=http://localhost:4001   # or https://brain.unisonlabs.ai
    node src/search-memory.js "test query"
    node src/write-memory.js "test content"
    ```

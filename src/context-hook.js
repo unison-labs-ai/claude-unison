@@ -32,7 +32,7 @@ Memory recall is disabled for this session.
       return;
     }
 
-    const baseUrl = process.env.UNISON_API_URL || 'https://api.unisonlabs.ai';
+    const baseUrl = process.env.UNISON_API_URL || 'https://brain.unisonlabs.ai';
     const client = new BrainClient({ token, baseUrl });
 
     const personalPrefix = getPersonalSessionPrefix(cwd);

@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = 'https://api.unisonlabs.ai';
+const DEFAULT_BASE_URL = 'https://brain.unisonlabs.ai';
 
 function stripTrailingSlash(url) {
   return url.replace(/\/+$/, '');

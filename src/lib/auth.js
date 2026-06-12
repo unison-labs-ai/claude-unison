@@ -8,7 +8,7 @@ const CREDENTIALS_FILE = path.join(SETTINGS_DIR, 'credentials.json');
 
 const API_BASE_URL = process.env.UNISON_API_URL
   ? process.env.UNISON_API_URL.replace(/\/+$/, '')
-  : 'https://api.unisonlabs.ai';
+  : 'https://brain.unisonlabs.ai';
 
 function ensureDir() {
   if (!fs.existsSync(SETTINGS_DIR)) {
