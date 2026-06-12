@@ -28,7 +28,7 @@ async function main() {
   const slug = sha256Short(`project-${Date.now()}`);
   const docPath = `${prefix}knowledge-${slug}.md`;
 
-  const baseUrl = process.env.UNISON_API_URL || 'https://api.unisonlabs.ai';
+  const baseUrl = process.env.UNISON_API_URL || 'https://brain.unisonlabs.ai';
   const client = new BrainClient({ token, baseUrl });
 
   try {

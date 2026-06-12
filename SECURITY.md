@@ -31,4 +31,4 @@ Server-side or account issues should also go to the same address.
 The plugin stores a bearer token (`usk_...`) in `~/.unison-claude/credentials.json`
 with `0600` permissions, or reads it from the `UNISON_TOKEN` environment variable.
 The token is never logged, never written to build output, and is transmitted only to
-the configured API host (`UNISON_API_URL`, default `https://api.unisonlabs.ai`).
+the configured API host (`UNISON_API_URL`, default `https://brain.unisonlabs.ai`).

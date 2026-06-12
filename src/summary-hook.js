@@ -50,7 +50,7 @@ async function main() {
       return;
     }
 
-    const baseUrl = process.env.UNISON_API_URL || 'https://api.unisonlabs.ai';
+    const baseUrl = process.env.UNISON_API_URL || 'https://brain.unisonlabs.ai';
     const client = new BrainClient({ token, baseUrl });
 
     const projectName = getProjectName(cwd);

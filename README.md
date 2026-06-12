@@ -55,7 +55,7 @@ On session start, the `SessionStart` hook queries the Unison brain for memories 
 
 ```bash
 UNISON_TOKEN=usk_live_...        # Required: your Unison API token
-UNISON_API_URL=https://...       # Optional: override API base URL (default: https://api.unisonlabs.ai)
+UNISON_API_URL=https://...       # Optional: override API base URL (default: https://brain.unisonlabs.ai)
 UNISON_DEBUG=true                # Optional: enable debug logging
 UNISON_ISOLATE_WORKTREES=true    # Optional: treat git worktrees as separate projects
 ```

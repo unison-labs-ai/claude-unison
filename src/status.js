@@ -58,7 +58,7 @@ async function main() {
   console.log(`  Token:        ${maskToken(token)}`);
 
   if (isTokenSet) {
-    const baseUrl = process.env.UNISON_API_URL || 'https://api.unisonlabs.ai';
+    const baseUrl = process.env.UNISON_API_URL || 'https://brain.unisonlabs.ai';
     const client = new BrainClient({ token, baseUrl });
     try {
       const whoami = await client.whoami();

@@ -27,7 +27,7 @@ Follows the [AGENTS.md](https://agents.md/) convention. Human contributors: see
   Ask the user for a `usk_...` key from [app.unisonlabs.ai](https://app.unisonlabs.ai), then:
   ```bash
   export UNISON_TOKEN=usk_...
-  export UNISON_API_URL=https://api.unisonlabs.ai   # optional; this is the default
+  export UNISON_API_URL=https://brain.unisonlabs.ai   # optional; this is the default
   ```
 - **Interactive OTP (no browser, no pre-existing key):**
   Run `/claude-unison:auth` inside Claude Code and follow the prompts.
@@ -74,7 +74,7 @@ Auth header: `Authorization: Bearer usk_...`
 To provision a throwaway key for testing:
 
 ```bash
-curl -s -X POST https://api.unisonlabs.ai/v1/auth/provision \
+curl -s -X POST https://brain.unisonlabs.ai/v1/auth/provision \
   -H 'Content-Type: application/json' \
   -d '{"email":"your@email.com"}'
 # returns { apiKey: "usk_...", tenantId: "...", status: "unverified" }
