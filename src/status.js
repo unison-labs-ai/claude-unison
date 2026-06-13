@@ -63,14 +63,16 @@ async function main() {
     try {
       const whoami = await client.whoami();
       const user = whoami.user || {};
-      const tenant = whoami.tenant || {};
+      const workspace = whoami.workspace || {};
       const scopes = (whoami.scopes || []).join(', ');
       console.log('');
       console.log('Brain connection:');
-      console.log(`  Email:    ${user.email || 'unknown'}`);
-      console.log(`  Tenant:   ${tenant.name || tenant.id || 'unknown'}`);
-      console.log(`  Verified: ${tenant.verified ? 'yes' : 'no (verify via /claude-unison:auth)'}`);
-      console.log(`  Scopes:   ${scopes}`);
+      console.log(`  Email:     ${user.email || 'unknown'}`);
+      console.log(`  Workspace: ${workspace.name || workspace.id || 'unknown'}`);
+      console.log(
+        `  Verified:  ${workspace.verified ? 'yes' : 'no (verify via /claude-unison:auth)'}`,
+      );
+      console.log(`  Scopes:    ${scopes}`);
     } catch (err) {
       console.log('');
       console.log(`  Brain API: unreachable (${err.message})`);

@@ -18,7 +18,7 @@ function getUserFriendlyError(err) {
     return 'Not found — no brain document exists at this path yet.';
   }
   if (code === 'invalid_path' || status === 400) {
-    return 'Invalid path — brain document paths must end in .md and start with /private/, /tenant/, or /teams/<slug>/.';
+    return 'Invalid path — brain document paths must end in .md and start with /private/, /workspace/, or /workspace/teams/<slug>/.';
   }
   if (code === 'rate_limited' || status === 429) {
     return 'Rate limited — too many requests. Will retry next session.';

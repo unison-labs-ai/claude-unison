@@ -125,7 +125,7 @@ Per-repo overrides. Run `/claude-unison:project-config` or create manually:
 {
   "apiToken": "usk_live_...",
   "personalDocPath": "/private/notes/session-my-project-",
-  "repoDocPath": "/tenant/projects/my-project-"
+  "repoDocPath": "/workspace/projects/my-project-"
 }
 ```
 
@@ -141,7 +141,7 @@ Session transcripts are saved as flat documents under `/private/notes/`, with ea
 file named `session-<project-hash>-<session-id>.md`. The project hash ensures docs
 from different repos don't collide.
 
-Project knowledge (saved via `unison-save`) goes to `/tenant/projects/<repo-name>-<slug>.md` —
+Project knowledge (saved via `unison-save`) goes to `/workspace/projects/<repo-name>-<slug>.md` —
 a single flat slug under the `projects` kind, visible to everyone in your workspace.
 
 Both layouts use the one-slug-segment format required by the brain FS contract;

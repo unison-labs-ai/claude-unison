@@ -41,7 +41,7 @@ async function main() {
       kind: 'wiki_page',
       title,
       tags: ['project-knowledge', 'claude-code', projectName],
-      visibility: 'tenant',
+      visibility: 'workspace',
     });
 
     console.log(`Project knowledge saved: ${projectName}`);

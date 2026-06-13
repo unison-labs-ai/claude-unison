@@ -12,7 +12,7 @@ async function main() {
     const result = await provision(email);
     console.log(`Account created for: ${email}`);
     console.log(`Token (unverified): ${result.apiKey}`);
-    console.log(`Tenant ID: ${result.tenantId}`);
+    console.log(`Workspace ID: ${result.workspaceId}`);
     console.log('');
     console.log('Check your email for a verification OTP.');
     console.log(
