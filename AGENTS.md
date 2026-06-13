@@ -77,7 +77,7 @@ To provision a throwaway key for testing:
 curl -s -X POST https://brain.unisonlabs.ai/v1/auth/provision \
   -H 'Content-Type: application/json' \
   -d '{"email":"your@email.com"}'
-# returns { apiKey: "usk_...", tenantId: "...", status: "unverified" }
+# returns { apiKey: "usk_...", workspaceId: "...", status: "unverified" }
 ```
 
 ---

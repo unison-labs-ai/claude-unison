@@ -33,8 +33,8 @@ function getPersonalSessionPrefix(cwd) {
 }
 
 /**
- * Returns the /tenant/projects/ root with the repo name embedded in the
- * slug prefix. Documents land at /tenant/projects/<reponame>-<slug>.md —
+ * Returns the /workspace/projects/ root with the repo name embedded in the
+ * slug prefix. Documents land at /workspace/projects/<reponame>-<slug>.md —
  * a single slug segment as required by the brain FS contract.
  */
 function getRepoDocPrefix(cwd) {
@@ -45,7 +45,7 @@ function getRepoDocPrefix(cwd) {
   const basePath = gitRoot || cwd;
   const repoName = getGitRemoteName(basePath) || basePath.split('/').pop() || 'unknown';
   const slug = slugify(repoName);
-  return `/tenant/projects/${slug}-`;
+  return `/workspace/projects/${slug}-`;
 }
 
 /**

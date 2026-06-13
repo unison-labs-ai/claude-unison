@@ -19,7 +19,7 @@ Update project-level config stored in `.claude/.unison-claude/config.json`.
 2. Ask the user what they want to update using AskUserQuestion:
    - **API Token** (`apiToken`): Project-level `usk_...` token that overrides the global `UNISON_TOKEN`
    - **Personal Doc Path** (`personalDocPath`): Path prefix for personal session documents in the brain (default: `/private/sessions/`)
-   - **Repo Doc Path** (`repoDocPath`): Path prefix for repo-level knowledge shared across team (default: `/tenant/projects/<repo>/`)
+   - **Repo Doc Path** (`repoDocPath`): Path prefix for repo-level knowledge shared across team (default: `/workspace/projects/<repo>/`)
 
 3. Ask the user for the new value. Confirm the value they provide.
 

@@ -44,7 +44,7 @@ function clearCredentials() {
 
 /**
  * POST /v1/auth/provision — creates an unverified account.
- * Returns { apiKey, tenantId, status, emailSent } or throws on 409 (email_registered).
+ * Returns { apiKey, workspaceId, status, emailSent } or throws on 409 (email_registered).
  */
 async function provision(email) {
   const res = await fetch(`${API_BASE_URL}/v1/auth/provision`, {
@@ -82,7 +82,7 @@ async function requestKey(email) {
 }
 
 /**
- * POST /v1/auth/verify — verifies OTP. Returns { verified, apiKey?, tenantId }.
+ * POST /v1/auth/verify — verifies OTP. Returns { verified, apiKey?, workspaceId }.
  */
 async function verify(email, code) {
   const res = await fetch(`${API_BASE_URL}/v1/auth/verify`, {

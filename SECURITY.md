@@ -16,7 +16,7 @@ investigate. We will credit reporters who want it once a fix ships.
 ## Scope
 
 This repository is the **Claude Code plugin** (source + build scripts). It holds no
-secrets and is not a security boundary — authentication, authorization, tenant
+secrets and is not a security boundary — authentication, authorization, workspace
 isolation, and rate limiting are enforced **server-side** by the Unison brain API.
 Reports about this plugin are most useful when they concern:
 
