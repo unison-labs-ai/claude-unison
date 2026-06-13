@@ -1,16 +1,33 @@
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/unison-labs-ai/unison-brain/main/assets/brain.svg" width="140" />
+
 # claude-unison
 
-Persistent, real-time memory for Claude Code — powered by the [Unison brain](https://unisonlabs.ai).
+**Your Claude Code has the memory of a goldfish. This fixes that.**
 
-Your AI remembers what you worked on — across sessions, across projects, across your team.
+Persistent, cross-session memory for Claude Code — powered by the [Unison brain](https://unisonlabs.ai).
 
-## Features
+[![CI](https://github.com/unison-labs-ai/claude-unison/actions/workflows/ci.yml/badge.svg)](https://github.com/unison-labs-ai/claude-unison/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Stars](https://img.shields.io/github/stars/unison-labs-ai/claude-unison?style=social)](https://github.com/unison-labs-ai/claude-unison)
 
-- **Auto Capture** — sessions are saved to the brain when Claude Code stops
-- **Auto Recall** — relevant memories are injected at session start
-- **Team Memory** — project knowledge shared across your team (tenant-visible docs)
-- **Personal Memory** — session transcripts stored privately in your brain namespace
-- **Headless Auth** — machine-auth via email OTP, no browser required
+[**Why**](#with-unison-vs-without) • [**Install**](#installation) • [**Auth**](#authentication) • [**Commands**](#commands) • [**Config**](#configuration) • [**How it works**](#how-it-works)
+
+</div>
+
+---
+
+### With Unison vs. without
+
+| Without | With Unison |
+|---|---|
+| Every Claude Code session starts blank | Relevant memories injected automatically at session start |
+| Hard-won context lost the moment you close the terminal | Sessions captured to your private brain namespace on stop |
+| Architecture decisions re-explained to Claude every time | Team knowledge shared across every session and teammate |
+| `CLAUDE.md` goes stale and you forget to update it | Claude writes back what it learns; brain stays current |
+
+---
 
 ## Installation
 
@@ -19,7 +36,7 @@ Your AI remembers what you worked on — across sessions, across projects, acros
 /plugin install claude-unison
 ```
 
-Authenticate with your Unison account:
+Then authenticate with your Unison account:
 
 ```bash
 /claude-unison:auth
@@ -31,12 +48,25 @@ Or set your token directly (get one at [app.unisonlabs.ai](https://app.unisonlab
 export UNISON_TOKEN="usk_live_..."
 ```
 
-## How It Works
+## Authentication
 
-On session start, the `SessionStart` hook queries the Unison brain for memories relevant to the current project and injects them as context. On session end, the `Stop` hook saves the new conversation turns to your private brain namespace as a structured document.
+Authentication uses a three-step headless flow — no browser required:
 
-- **unison-search** — Ask about past work or previous sessions; Claude searches your brain
-- **unison-save** — Ask to save something important; Claude writes it as team knowledge
+1. Run `/claude-unison:auth` and enter your email
+2. Check your inbox for a 6-digit OTP
+3. Enter the OTP — credentials are saved to `~/.unison-claude/credentials.json`
+
+For CI or non-interactive environments, set `UNISON_TOKEN` directly.
+
+Token priority: `UNISON_TOKEN` env var > `~/.unison-claude/settings.json` > `.claude/.unison-claude/config.json` > `~/.unison-claude/credentials.json`.
+
+## Features
+
+- **Auto Capture** — sessions are saved to the brain when Claude Code stops
+- **Auto Recall** — relevant memories are injected at session start
+- **Team Memory** — project knowledge shared across your team (tenant-visible docs)
+- **Personal Memory** — session transcripts stored privately in your brain namespace
+- **Headless Auth** — machine-auth via email OTP, no browser required
 
 ## Commands
 
@@ -48,6 +78,13 @@ On session start, the `SessionStart` hook queries the Unison brain for memories 
 | `/claude-unison:logout` | Clear saved credentials |
 | `/claude-unison:session` | Show a link to the current session document in the brain |
 | `/claude-unison:status` | Show authentication status and brain connection info |
+
+## How It Works
+
+On session start, the `SessionStart` hook queries the Unison brain for memories relevant to the current project and injects them as context. On session end, the `Stop` hook saves the new conversation turns to your private brain namespace as a structured document.
+
+- **unison-search** — Ask about past work or previous sessions; Claude searches your brain
+- **unison-save** — Ask to save something important; Claude writes it as team knowledge
 
 ## Configuration
 
@@ -110,18 +147,34 @@ a single flat slug under the `projects` kind, visible to everyone in your worksp
 Both layouts use the one-slug-segment format required by the brain FS contract;
 nested subfolders are not used.
 
-## Authentication
+---
 
-Authentication uses a three-step headless flow (no browser required):
+## Star history
 
-1. Run `/claude-unison:auth` and enter your email
-2. Check your inbox for a 6-digit OTP
-3. Enter the OTP — credentials are saved to `~/.unison-claude/credentials.json`
+If this saved you from explaining your codebase to Claude for the fourth time, drop a ⭐ — it helps others find it.
 
-For CI or non-interactive environments, set `UNISON_TOKEN` directly.
+<a href="https://star-history.com/#unison-labs-ai/claude-unison&Date">
+  <img src="https://api.star-history.com/svg?repos=unison-labs-ai/claude-unison&type=Date" width="600" />
+</a>
 
-Token priority: `UNISON_TOKEN` env var > `~/.unison-claude/settings.json` > `.claude/.unison-claude/config.json` > `~/.unison-claude/credentials.json`.
+---
 
-## License
+## Part of the Unison Labs constellation
 
-MIT
+**One brain, every agent.** Every repo below reads from _and writes to_ the same [Unison brain](https://unisonlabs.ai) — no per-tool memory silos.
+
+| Repo | What it does |
+|---|---|
+| [unison-brain](https://github.com/unison-labs-ai/unison-brain) | CLI · SDK · MCP server — the core |
+| **[claude-unison](https://github.com/unison-labs-ai/claude-unison)** | **Memory for Claude Code** ← you are here |
+| [cursor-unison](https://github.com/unison-labs-ai/cursor-unison) | Memory for Cursor |
+| [codex-unison](https://github.com/unison-labs-ai/codex-unison) | Memory for OpenAI Codex CLI |
+| [opencode-unison](https://github.com/unison-labs-ai/opencode-unison) | Memory for OpenCode |
+| [openclaw-unison](https://github.com/unison-labs-ai/openclaw-unison) | Memory for OpenClaw |
+| [pipecat-unison](https://github.com/unison-labs-ai/pipecat-unison) | Memory for Pipecat voice agents |
+| [python-sdk](https://github.com/unison-labs-ai/python-sdk) | Python SDK for the brain |
+| [install-mcp](https://github.com/unison-labs-ai/install-mcp) | One-command MCP installer |
+| [code-chunk](https://github.com/unison-labs-ai/code-chunk) | AST-aware code chunking |
+| [unison-fs](https://github.com/unison-labs-ai/unison-fs) | Mount the brain as a filesystem |
+| [backchannel](https://github.com/unison-labs-ai/backchannel) | Async messaging between agents |
+| [Unison-evals](https://github.com/unison-labs-ai/Unison-evals) | Open memory benchmark suite |
