@@ -29,6 +29,19 @@ Persistent, cross-session memory for Claude Code — powered by the [Unison brai
 
 ---
 
+**Powered by the [Unison brain](https://github.com/unison-labs-ai/unison-brain#the-hard-part--what-every-memory-system-gets-wrong) — not a flat vector store.** Temporal facts that know *what changed when*, entity resolution that knows *who's who*, and one source of truth shared across every agent and teammate — Claude Code, Cursor, Codex, voice, your backend.
+
+### Why Unison, not Claude Code's built-in memory (or mem0)?
+
+| Other memory | Unison |
+|---|---|
+| Stores *what you said* as a flat log / vector dump | Resolves *who and what you meant* and *when it changed* — a temporal knowledge graph |
+| A silo — scoped to Claude Code, this repo, this machine, you | One brain every agent **and teammate** reads from and writes back to |
+| Keeps returning a now-stale fact with confidence after things change | Bitemporal supersession stops surfacing the version that's no longer true |
+| "Trust our benchmark" | An [open, reproducible benchmark](https://github.com/unison-labs-ai/Unison-evals) scoring every system — including ours |
+
+---
+
 ## Installation
 
 ```bash
